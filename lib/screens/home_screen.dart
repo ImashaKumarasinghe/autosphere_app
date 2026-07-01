@@ -10,6 +10,7 @@ import 'fuel_station_listing_screen.dart';
 import 'ev_charging_listing_screen.dart';
 import 'parking_listing_screen.dart';
 import 'vehicle_wash_listing_screen.dart';
+import 'provider_dashboard_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -72,7 +73,8 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildHeader(),
+              // FIXED: pass BuildContext to _buildHeader
+              _buildHeader(context),
 
               const SizedBox(height: 20),
 
@@ -102,53 +104,55 @@ class HomeScreen extends StatelessWidget {
                     title: category.title,
                     icon: category.icon,
                     onTap: () {
-  if (category.title == 'Fuel Stations') {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => const FuelStationListingScreen(),
-      ),
-    );
-  } else if (category.title == 'EV Charging') {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => const EvChargingListingScreen(),
-      ),
-    );
-  } else if (category.title == 'Parking') {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => const ParkingListingScreen(),
-      ),
-    );
-  } else if (category.title == 'Vehicle Wash') {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => const VehicleWashListingScreen(
-          screenTitle: 'Vehicle Wash',
-        ),
-      ),
-    );
-  } else if (category.title == 'Detailing') {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => const VehicleWashListingScreen(
-          screenTitle: 'Detailing',
-        ),
-      ),
-    );
-  } else {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('${category.title} module coming soon'),
-      ),
-    );
-  }
-},
+                      if (category.title == 'Fuel Stations') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const FuelStationListingScreen(),
+                          ),
+                        );
+                      } else if (category.title == 'EV Charging') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const EvChargingListingScreen(),
+                          ),
+                        );
+                      } else if (category.title == 'Parking') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const ParkingListingScreen(),
+                          ),
+                        );
+                      } else if (category.title == 'Vehicle Wash') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const VehicleWashListingScreen(
+                              screenTitle: 'Vehicle Wash',
+                            ),
+                          ),
+                        );
+                      } else if (category.title == 'Detailing') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const VehicleWashListingScreen(
+                              screenTitle: 'Detailing',
+                            ),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              '${category.title} module coming soon',
+                            ),
+                          ),
+                        );
+                      }
+                    },
                   );
                 },
               ),
@@ -204,7 +208,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader() {
+  // FIXED: Added BuildContext context parameter
+  Widget _buildHeader(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -229,16 +234,29 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
-        Container(
-          height: 45,
-          width: 45,
-          decoration: BoxDecoration(
-            color: AppColors.deepNavy,
-            borderRadius: BorderRadius.circular(14),
-          ),
-          child: const Icon(
-            Icons.notifications_none,
-            color: Colors.white,
+
+        // Provider Dashboard button
+        InkWell(
+          borderRadius: BorderRadius.circular(14),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => const ProviderDashboardScreen(),
+              ),
+            );
+          },
+          child: Container(
+            height: 45,
+            width: 45,
+            decoration: BoxDecoration(
+              color: AppColors.deepNavy,
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: const Icon(
+              Icons.store,
+              color: Colors.white,
+            ),
           ),
         ),
       ],
