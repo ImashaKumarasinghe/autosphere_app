@@ -6,6 +6,8 @@ import '../models/offer_model.dart';
 import '../models/provider_model.dart';
 import '../models/service_category_model.dart';
 import '../theme/app_colors.dart';
+import 'fuel_station_listing_screen.dart';
+import 'ev_charging_listing_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -98,12 +100,28 @@ class HomeScreen extends StatelessWidget {
                     title: category.title,
                     icon: category.icon,
                     onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('${category.title} selected'),
-                        ),
-                      );
-                    },
+  if (category.title == 'Fuel Stations') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const FuelStationListingScreen(),
+      ),
+    );
+  } else if (category.title == 'EV Charging') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const EvChargingListingScreen(),
+      ),
+    );
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('${category.title} module coming soon'),
+      ),
+    );
+  }
+},
                   );
                 },
               ),
