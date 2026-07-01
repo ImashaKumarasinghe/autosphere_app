@@ -1,18 +1,47 @@
-# autosphere_app
+# AutoSphere Smart Vehicle Services System
 
-A new Flutter project.
+AutoSphere is a smart mobility service mobile application developed using Flutter.  
+It allows customers to discover, book, and manage daily vehicle services such as fuel stations, EV charging, parking, vehicle wash, and detailing services.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+### Customer Features
+- Smart service home
+- Fuel station listing and details
+- EV charging station listing
+- Charging slot booking
+- Parking search and booking
+- Vehicle wash and detailing booking
+- Booking status tracking
+- Payment history
+- Notifications
 
-A few resources to get you started if this is your first Flutter project:
+### Provider Features
+- Provider dashboard
+- Today booking overview
+- Customer and revenue summary
+- Availability management
+- Offer and promotion management
+- Reports dashboard
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Technologies Used
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-"# autosphere_app" 
+- Flutter
+- Dart
+- Component-based architecture
+- Reusable UI components
+- Dummy data models
+- API-ready folder structure
+
+## Folder Structure
+
+```text
+lib/
+ ┣ components/
+ ┣ config/
+ ┣ models/
+ ┣ screens/
+ ┣ services/
+ ┣ theme/
+ ┣ utils/
+ ┗ main.dart
