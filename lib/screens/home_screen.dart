@@ -11,6 +11,9 @@ import 'ev_charging_listing_screen.dart';
 import 'parking_listing_screen.dart';
 import 'vehicle_wash_listing_screen.dart';
 import 'provider_dashboard_screen.dart';
+import 'booking_status_screen.dart';
+import 'payment_screen.dart';
+import 'notifications_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -73,12 +76,44 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // FIXED: pass BuildContext to _buildHeader
               _buildHeader(context),
 
               const SizedBox(height: 20),
 
               _buildSearchBar(),
+
+              const SizedBox(height: 18),
+
+              Row(
+                children: [
+                  Expanded(
+                    child: _homeQuickButton(
+                      context,
+                      title: 'Bookings',
+                      icon: Icons.confirmation_number,
+                      screen: const BookingStatusScreen(),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: _homeQuickButton(
+                      context,
+                      title: 'Payments',
+                      icon: Icons.payments,
+                      screen: const PaymentScreen(),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: _homeQuickButton(
+                      context,
+                      title: 'Alerts',
+                      icon: Icons.notifications,
+                      screen: const NotificationsScreen(),
+                    ),
+                  ),
+                ],
+              ),
 
               const SizedBox(height: 24),
 
@@ -208,7 +243,48 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // FIXED: Added BuildContext context parameter
+  Widget _homeQuickButton(
+    BuildContext context, {
+    required String title,
+    required IconData icon,
+    required Widget screen,
+  }) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(16),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => screen),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 14),
+        decoration: BoxDecoration(
+          color: AppColors.cardWhite,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          children: [
+            Icon(
+              icon,
+              color: AppColors.primaryOrange,
+              size: 24,
+            ),
+            const SizedBox(height: 6),
+            Text(
+              title,
+              style: const TextStyle(
+                color: AppColors.deepNavy,
+                fontWeight: FontWeight.bold,
+                fontSize: 12,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildHeader(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -235,7 +311,6 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
 
-        // Provider Dashboard button
         InkWell(
           borderRadius: BorderRadius.circular(14),
           onTap: () {

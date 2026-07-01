@@ -6,6 +6,7 @@ import '../models/provider_booking_model.dart';
 import '../theme/app_colors.dart';
 import 'availability_management_screen.dart';
 import 'offer_management_screen.dart';
+import 'reports_screen.dart';
 
 class ProviderDashboardScreen extends StatelessWidget {
   const ProviderDashboardScreen({super.key});
@@ -81,26 +82,35 @@ class ProviderDashboardScreen extends StatelessWidget {
             const SizedBox(height: 18),
 
             Row(
-              children: [
-                Expanded(
-                  child: _quickActionCard(
-                    context,
-                    title: 'Availability',
-                    icon: Icons.event_available,
-                    screen: const AvailabilityManagementScreen(),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _quickActionCard(
-                    context,
-                    title: 'Offers',
-                    icon: Icons.local_offer,
-                    screen: const OfferManagementScreen(),
-                  ),
-                ),
-              ],
-            ),
+  children: [
+    Expanded(
+      child: _quickActionCard(
+        context,
+        title: 'Availability',
+        icon: Icons.event_available,
+        screen: const AvailabilityManagementScreen(),
+      ),
+    ),
+    const SizedBox(width: 12),
+    Expanded(
+      child: _quickActionCard(
+        context,
+        title: 'Offers',
+        icon: Icons.local_offer,
+        screen: const OfferManagementScreen(),
+      ),
+    ),
+    const SizedBox(width: 12),
+    Expanded(
+      child: _quickActionCard(
+        context,
+        title: 'Reports',
+        icon: Icons.analytics,
+        screen: const ReportsScreen(),
+      ),
+    ),
+  ],
+),
 
             const SizedBox(height: 22),
 
