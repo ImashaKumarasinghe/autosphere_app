@@ -8,6 +8,7 @@ import '../models/service_category_model.dart';
 import '../theme/app_colors.dart';
 import 'fuel_station_listing_screen.dart';
 import 'ev_charging_listing_screen.dart';
+import 'parking_listing_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -112,6 +113,13 @@ class HomeScreen extends StatelessWidget {
       context,
       MaterialPageRoute(
         builder: (_) => const EvChargingListingScreen(),
+      ),
+    );
+  } else if (category.title == 'Parking') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const ParkingListingScreen(),
       ),
     );
   } else {
